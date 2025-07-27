@@ -1,0 +1,75 @@
+/* eslint-disable no-param-reassign */
+import axios from "axios";
+import { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+
+export const authOptions: NextAuthOptions = {
+  // ** Pages
+  pages: {
+    signIn: "/signin",
+  },
+
+  // ** Session Strategy
+  session: {
+    strategy: "jwt",
+    maxAge: 1 * 24 * 60 * 60,
+  },
+
+  // ** Secret
+  secret: process.env.NEXTAUTH_SECRET,
+
+  // ** Providers
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "user@gmail.com",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "********",
+        },
+      },
+
+      async authorize(credentials) {
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
+        };
+
+        const response = await axios
+          .post(`${process.env.API_URL}/auth/login`, {
+            email,
+            password,
+          })
+          .then(({ data }) => data)
+          .catch((error) => {
+            if (error.response.data.statusCode === 401) throw new Error(error.response.data.message);
+            if (error.response.data.statusCode === 400) throw new Error(error.response.data.message);
+            if (error.response.status === 500) throw new Error("Server Error !");
+          });
+        return response || null;
+      },
+    }),
+  ],
+
+  // ** Callbacks
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.role = token.data.userInfo.role.name;
+      session.accessToken = await token.data.token;
+      // console.log("Next auth session", session);
+      return session;
+    },
+  },
+
+  // ** Debug
+  debug: process.env.NODE_ENV === "development",
+};

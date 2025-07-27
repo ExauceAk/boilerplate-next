@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    /* ------- PRIMARY COLORS ------- */
+
+    /* PRIMARY COLORS - BASE */
+    --primary-base-white: 0 0% 100%;
+    --primary-base-black: 222 41% 8%;
+
+    /* PRIMARY COLORS - NEUTRAL */
+    --primary-neutral-25: 210 20% 99%;
+    --primary-neutral-50: 210 24% 98%;
+    --primary-neutral-100: 220 22% 96%;
+    --primary-neutral-200: 220 17% 91%;
+    --primary-neutral-300: 216 16% 84%;
+    --primary-neutral-400: 218 15% 65%;
+    --primary-neutral-500: 220 13% 46%;
+    --primary-neutral-600: 215 18% 34%;
+    --primary-neutral-700: 217 23% 27%;
+    --primary-neutral-800: 215 32% 17%;
+    --primary-neutral-900: 221 43% 11%;
+    --primary-neutral-950: 222 41% 8%;
+
+    /* PRIMARY COLORS - BRAND */
+    --primary-brand-25: 225 80% 98%;
+    --primary-brand-50: 220 90% 96%;
+    --primary-brand-100: 220 87% 94%;
+    --primary-brand-200: 220 87% 85%;
+    --primary-brand-300: 220 87% 76%;
+    --primary-brand-400: 220 86% 66%;
+    --primary-brand-500: 220 87% 58%;
+    --primary-brand-600: 220 86% 49%;
+    --primary-brand-700: 220 86% 40%;
+    --primary-brand-800: 220 87% 32%;
+    --primary-brand-900: 220 86% 26%;
+    --primary-brand-950: 220 88% 16%;
+
+    /* ------- SECONDARY COLORS ------- */
+
+    /* SECONDARY COLORS - BLUE */
+    --secondary-blue-25: 210 100% 98%;
+    --secondary-blue-50: 206 100% 97%;
+    --secondary-blue-100: 209 100% 91%;
+    --secondary-blue-200: 206 100% 85%;
+    --secondary-blue-300: 206 100% 76%;
+    --secondary-blue-400: 207 98% 66%;
+    --secondary-blue-500: 211 95% 58%;
+    --secondary-blue-600: 215 87% 51%;
+    --secondary-blue-700: 218 80% 46%;
+    --secondary-blue-800: 220 75% 38%;
+    --secondary-blue-900: 218 68% 31%;
+    --secondary-blue-950: 218 69% 20%;
+
+    /* SECONDARY COLORS - PURPLE */
+    --secondary-purple-25: 244 100% 99%;
+    --secondary-purple-50: 244 100% 98%;
+    --secondary-purple-100: 245 93% 95%;
+    --secondary-purple-200: 245 97% 92%;
+    --secondary-purple-300: 247 97% 85%;
+    --secondary-purple-400: 249 94% 76%;
+    --secondary-purple-500: 252 92% 66%;
+    --secondary-purple-600: 256 85% 58%;
+    --secondary-purple-700: 257 72% 50%;
+    --secondary-purple-800: 257 71% 42%;
+    --secondary-purple-900: 257 69% 35%;
+    --secondary-purple-950: 257 70% 22%;
+
+    /* SECONDARY COLORS - ORANGE */
+    --secondary-orange-25: 29 100% 98%;
+    --secondary-orange-50: 29 100% 96%;
+    --secondary-orange-100: 30 100% 92%;
+    --secondary-orange-200: 36 96% 83%;
+    --secondary-orange-300: 27 99% 72%;
+    --secondary-orange-400: 23 98% 61%;
+    --secondary-orange-500: 21 97% 53%;
+    --secondary-orange-600: 17 92% 48%;
+    --secondary-orange-700: 13 90% 40%;
+    --secondary-orange-800: 11 81% 34%;
+    --secondary-orange-900: 11 77% 28%;
+    --secondary-orange-950: 11 67% 19%;
+
+    /* ------- FEEDBACK COLORS ------- */
+
+    /* FEEDBACK COLORS - SUCCESS */
+    --feedback-success-25: 143 80% 98%;
+    --feedback-success-50: 144 83% 96%;
+    --feedback-success-100: 140 75% 92%;
+    --feedback-success-200: 144 68% 80%;
+    --feedback-success-300: 148 63% 67%;
+    --feedback-success-400: 150 57% 54%;
+    --feedback-success-500: 152 77% 39%;
+    --feedback-success-600: 153 91% 30%;
+    --feedback-success-700: 155 90% 24%;
+    --feedback-success-800: 155 84% 20%;
+    --feedback-success-900: 156 83% 16%;
+    --feedback-success-950: 157 82% 11%;
+
+    /* FEEDBACK COLORS - WARNING */
+    --feedback-warning-25: 44 100% 98%;
+    --feedback-warning-50: 44 100% 96%;
+    --feedback-warning-100: 44 98% 89%;
+    --feedback-warning-200: 44 99% 77%;
+    --feedback-warning-300: 42 99% 65%;
+    --feedback-warning-400: 39 98% 56%;
+    --feedback-warning-500: 34 94% 50%;
+    --feedback-warning-600: 28 97% 44%;
+    --feedback-warning-700: 22 92% 37%;
+    --feedback-warning-800: 19 84% 31%;
+    --feedback-warning-900: 18 80% 26%;
+    --feedback-warning-950: 12 79% 17%;
+
+    /* FEEDBACK COLORS - ERROR */
+    --feedback-error-25: 4 88% 99%;
+    --feedback-error-50: 4 88% 97%;
+    --feedback-error-100: 4 95% 94%;
+    --feedback-error-200: 4 98% 89%;
+    --feedback-error-300: 4 96% 80%;
+    --feedback-error-400: 4 93% 69%;
+    --feedback-error-500: 4 86% 58%;
+    --feedback-error-600: 4 74% 49%;
+    --feedback-error-700: 4 76% 40%;
+    --feedback-error-800: 4 72% 33%;
+    --feedback-error-900: 8 65% 29%;
+    --feedback-error-950: 8 75% 19%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 220 86% 66%;
+
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 220 86% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    @apply w-2 rounded-md;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-primary-neutral-200;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Loader style */
+.spinner {
+  width: 44px;
+  height: 44px;
+  animation: spinner-y0fdc1 2s infinite ease;
+  transform-style: preserve-3d;
+}
+
+.spinner > div {
+  background-color: rgba(0, 77, 255, 0.2);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  border: 2px solid #004dff;
+}
+
+.spinner div:nth-of-type(1) {
+  transform: translateZ(-22px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+  transform: rotateY(-270deg) translateX(50%);
+  transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+  transform: rotateY(270deg) translateX(-50%);
+  transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+  transform: rotateX(-90deg) translateY(50%);
+  transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+  transform: translateZ(22px);
+}
+
+@keyframes spinner-y0fdc1 {
+  0% {
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+  }
+
+  50% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+
+  100% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+  }
+}
+
+.ce-block__content * {
+  @apply focus-visible:outline-none;
+}
+.modal {
+  @apply !z-40;
+}
+
+.disabled-section {
+  pointer-events: none;
+  opacity: 0.7;
+  cursor: pointer;
+}
