@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import PasswordInput from "@/components/ui/password-input";
@@ -121,11 +120,6 @@ export default function LoginForm({ id, className }: Props) {
         />
 
         <div className=" flex items-center justify-between">
-          <div className="flex items-center gap-2 text-[#344054]">
-            <Checkbox />
-            Se souvenir de moi
-          </div>
-
           <Link
             className="block text-[#0E49BE]"
             href={routes.forgotPassword}
