@@ -3,12 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import PasswordInput from "@/components/ui/password-input";
-import { toast } from "@/components/ui/use-toast";
-import routes from "@/config/routes";
 import useResetPasswordForm, { ResetPasswordInformation } from "@/hooks/auth/use-reset-password-form";
 
 import { cn } from "@/lib/utils";
-import { useResetPassword } from "@/services/api/models/users/hooks";
+// import { useResetPassword } from "@/services/api/models/users/hooks";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
@@ -23,29 +21,29 @@ export default function ResetPasswordForm({ id, className, Token }: Props) {
   const form = useResetPasswordForm();
 
   const router = useRouter();
-  const { mutateAsync: resetPasswordMutateAsync } = useResetPassword();
+  // const { mutateAsync: resetPasswordMutateAsync } = useResetPassword();
 
   const onSubmit = useCallback(
     async (values: ResetPasswordInformation) => {
-      await resetPasswordMutateAsync(
-        {
-          password: values.newPassword,
-          confirmPassword: values.confirmPassword,
-          token: Token || "",
-        },
-
-        {
-          onSuccess: () => {
-            router.push(routes.signin);
-            toast({
-              variant: "success",
-              description: "Password reseted successfully",
-            });
-          },
-        },
-      );
+      // await resetPasswordMutateAsync(
+      //   {
+      //     password: values.newPassword,
+      //     confirmPassword: values.confirmPassword,
+      //     token: Token || "",
+      //   },
+      //   {
+      //     onSuccess: () => {
+      //       router.push(routes.signin);
+      //       toast({
+      //         variant: "success",
+      //         description: "Password reseted successfully",
+      //       });
+      //     },
+      //   },
+      // );
     },
-    [Token, resetPasswordMutateAsync, router],
+    // [Token, resetPasswordMutateAsync, router],
+    [],
   );
 
   return (

@@ -4,11 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { toast } from "@/components/ui/use-toast";
-import routes from "@/config/routes";
 import { cn } from "@/lib/utils";
-import { useForgetPassword } from "@/services/api/models/users/hooks";
-import { Loader2 } from "lucide-react";
+// import { useForgetPassword } from "@/services/api/models/users/hooks";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import useForgotPasswordForm, { ForgetPasswordFormValue } from "../../../hooks/auth/use-forgot-password-form";
@@ -21,27 +18,27 @@ type Props = {
 export default function ForgotPasswordForm({ id, className }: Props) {
   const form = useForgotPasswordForm();
   const router = useRouter();
-  const { mutateAsync: forgetPasswordMutateAsync, isPending } = useForgetPassword();
+  // const { mutateAsync: forgetPasswordMutateAsync, isPending } = useForgetPassword();
 
   const onSubmit = useCallback(
     async (values: ForgetPasswordFormValue) => {
-      await forgetPasswordMutateAsync(
-        {
-          email: values.email,
-        },
-
-        {
-          onSuccess: () => {
-            router.push(routes.signin);
-            toast({
-              variant: "success",
-              title: "Reset password link sent",
-            });
-          },
-        },
-      );
+      // await forgetPasswordMutateAsync(
+      //   {
+      //     email: values.email,
+      //   },
+      //   {
+      //     onSuccess: () => {
+      //       router.push(routes.signin);
+      //       toast({
+      //         variant: "success",
+      //         title: "Reset password link sent",
+      //       });
+      //     },
+      //   },
+      // );
     },
-    [forgetPasswordMutateAsync, router],
+    // [forgetPasswordMutateAsync, router],
+    [],
   );
 
   return (
@@ -70,16 +67,16 @@ export default function ForgotPasswordForm({ id, className }: Props) {
         />
 
         <Button
-          disabled={isPending}
+          // disabled={isPending}
           className="w-full bg-[#4472CA] font-semibold hover:bg-[#4472CA]"
           type="submit"
         >
-          {isPending && (
+          {/* {isPending && (
             <Loader2
               className="mr-2 h-4 w-4 animate-spin"
               aria-hidden="true"
             />
-          )}
+          )} */}
           Reset password
         </Button>
       </form>
