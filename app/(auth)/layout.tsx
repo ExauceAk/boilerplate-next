@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Hayout() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>layout</div>
+    <div>{children}</div>
   )
 }
