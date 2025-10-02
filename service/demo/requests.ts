@@ -1,9 +1,9 @@
 "use server";
 
 import { fetchData } from "@/lib/utils";
-import ApiError from "@/services/api/errors/api-error";
-import { getToken } from "@/utils/user-token";
 import { FetchService } from "../config/fetch";
+import { getToken } from "../config/user-token";
+import ApiError from "../config/api-error";
 
 export const fetchService: FetchService = new FetchService({
   requestInterceptor: async (config) => ({

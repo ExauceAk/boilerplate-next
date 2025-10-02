@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient, QueryKey, MutateOptions } from "@tanstack/react-query";
 import { useCallback } from "react";
-import ApiError from "@/services/api/errors/api-error";
+import ApiError from "./api-error";
 
 export function useCreateQueryHook<T>(
   key: QueryKey,
@@ -14,6 +14,7 @@ export function useCreateQueryHook<T>(
     queryFn: async () => {
       const result = await fetcher();
       if (typeof result === "string") return result as unknown as T;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (result && (result as any).error) throw new ApiError((result as any).error);
       return result;
     },
@@ -46,6 +47,7 @@ export function useCreateMutationHook<TArgs, TResult>(
     mutationFn: async (args) => {
       const result = await mutator(args);
       if (typeof result === "string") return result as unknown as TResult;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (result && (result as any).error) throw new ApiError((result as any).error);
       return result;
     },
