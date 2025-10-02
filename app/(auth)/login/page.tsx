@@ -1,10 +1,13 @@
-import React from "react";
+import LoginForm from "@/components/auth/forms/login-form";
 
 export default function Login() {
   return (
-    <div className="h-screen bg-gray-100  items-center justify-center gap-4 p-4 grid grid-cols-2">
-      <div className="h-full bg-green-500"></div>
-      <div className="h-full"></div>
-    </div>
+    <>
+        <div className="font-bold text-5xl text-gray-800 ">
+          <p>Hello,</p>
+          <p>Welcome Back</p>
+        </div>
+        <LoginForm />
+    </>
   );
 }
