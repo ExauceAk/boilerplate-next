@@ -1,9 +1,9 @@
 "use server";
 
-import { fetchData } from "@/lib/utils";
 import { FetchService } from "../config/fetch";
 import { getToken } from "../config/user-token";
 import ApiError from "../config/api-error";
+import { fetchData } from "@/lib/utils";
 
 export const fetchService: FetchService = new FetchService({
   requestInterceptor: async (config) => ({
@@ -23,7 +23,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
   throw new ApiError(error);
 }
 
-export const api = {
+export const demoApi = {
   get: async <T>(url: string) => {
     const response = await fetchService.get(url);
     return handleResponse<T>(response);
