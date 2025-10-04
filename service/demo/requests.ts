@@ -4,6 +4,8 @@ import { FetchService } from "../config/fetch";
 import { getToken } from "../config/user-token";
 import ApiError from "../config/api-error";
 import { fetchData } from "@/lib/utils";
+import { create } from "domain";
+import { Demo } from "./types";
 
 export const fetchService: FetchService = new FetchService({
   requestInterceptor: async (config) => ({
@@ -23,21 +25,45 @@ async function handleResponse<T>(response: Response): Promise<T> {
   throw new ApiError(error);
 }
 
-export const demoApi = {
-  get: async <T>(url: string) => {
-    const response = await fetchService.get(url);
+export const demoRequest = {
+  getAll: async <T>() => {
+    const response = await fetchService.get("/demo");
     return handleResponse<T>(response);
   },
-  post: async <T>(url: string, body: any, headers: HeadersInit = { "Content-Type": "application/json" }) => {
-    const response = await fetchService.post(url, body, { headers });
+
+  getOne: async <T>(id: string) => {
+    const response = await fetchService.get(`/demo/${id}`);
     return handleResponse<T>(response);
   },
-  put: async <T>(url: string, body: any, headers: HeadersInit = { "Content-Type": "application/json" }) => {
-    const response = await fetchService.put(url, body, { headers });
+  create: async <T>(
+    args: Demo,
+    headers: HeadersInit = { "Content-Type": "application/json" }
+  ) => {
+    const response = await fetchService.post(
+      "/demo",
+      JSON.stringify({
+        name: args.name,
+      }),
+      { headers }
+    );
     return handleResponse<T>(response);
   },
-  delete: async <T>(url: string) => {
-    const response = await fetchService.delete(url);
+  update: async <T>(
+    id: string,
+    args: Demo,
+    headers: HeadersInit = { "Content-Type": "application/json" }
+  ) => {
+    const response = await fetchService.put(
+      `/demo/${id}`,
+      JSON.stringify({
+        name: args.name,
+      }),
+      { headers }
+    );
+    return handleResponse<T>(response);
+  },
+  delete: async <T>(id: string) => {
+    const response = await fetchService.delete(`/demo/${id}`);
     return handleResponse<T>(response);
   },
 };
