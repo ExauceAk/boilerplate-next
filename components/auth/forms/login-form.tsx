@@ -103,7 +103,7 @@ export default function LoginForm({ id, className }: Props) {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[#1D3055]">Mot de passe</FormLabel>
+              <FormLabel className="text-[#1D3055]">Password</FormLabel>
               <FormControl>
                 <PasswordInput
                   placeholder="*****"
