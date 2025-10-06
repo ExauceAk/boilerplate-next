@@ -13,7 +13,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { LogOut, Projector, User, UserPlus } from "lucide-react";
 import { useState } from "react";
 import SignOutButton from "./sign-out-button";
@@ -28,7 +34,6 @@ export function Sidebar() {
       label: "All Projects",
       active: pathname === "/" || pathname.startsWith("/project"),
       disabled: true,
-
     },
   ];
 
@@ -59,7 +64,15 @@ export function Sidebar() {
       <div className="flex-1 overflow-auto py-12">
         <nav className="grid gap-1 space-y-5 px-2">
           {routes.map((route) => (
-            <div key={route.href} title={route.label} className={`${route.disabled ? "disabled-section opacity-15 cursor-pointer-none" : ""}`}>
+            <div
+              key={route.href}
+              title={route.label}
+              className={`${
+                route.disabled
+                  ? "disabled-section opacity-15 cursor-pointer-none"
+                  : ""
+              }`}
+            >
               <Link
                 key={route.href}
                 href={route.href}
@@ -101,7 +114,8 @@ export function Sidebar() {
             </DropdownMenuItem>
             <SignOutButton>
               <DropdownMenuItem className="text-red-500 flex items-center gap-2 hover:text-red-700">
-                <LogOut size={16} />Logout
+                <LogOut size={16} />
+                Logout
               </DropdownMenuItem>
             </SignOutButton>
           </DropdownMenuContent>
@@ -110,7 +124,6 @@ export function Sidebar() {
           {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button> */}
       </div>
-
-    </motion.div >
+    </motion.div>
   );
 }
