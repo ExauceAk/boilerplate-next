@@ -15,13 +15,13 @@ export default function QueryProvider({ children }: { children?: ReactNode }) {
             // refetchOnMount: true,
           },
         },
-      }),
+      })
   );
 
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
   );
 }
