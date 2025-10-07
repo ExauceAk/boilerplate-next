@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         {children}
       </div>
-      <div className="h-full rounded-2xl bg-cover overflow-hidden relative bg-red mx-8">
+      <div className="h-full rounded-2xl bg-cover overflow-hidden relative bg-red mx-8 hide-scrollbar">
         <Image src="/images/log-image.png" alt="fond" fill />
       </div>
     </div>

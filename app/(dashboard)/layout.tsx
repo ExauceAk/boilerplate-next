@@ -1,13 +1,10 @@
-import { Sidebar } from "@/components/sidebar"
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { Sidebar } from "@/components/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
-      <main>
+    <div className="h-screen flex flex-row bg-gray-100 ">
       <Sidebar />
       {children}
-      </main>
-    </SidebarProvider>
-  )
+    </div>
+  );
 }
