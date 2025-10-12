@@ -27,21 +27,16 @@ async function handleResponse(
   return { error: error };
 }
 
-export const getAllNotes = async (): Promise<
-  | {
-      data: Note[];
-      page: number;
-      total: number;
-    }
-  | { error: string }
-> => {
+export const getAllNotes = async (): Promise<{
+  data: Note[];
+  page: number;
+  total: number;
+}> => {
   const response = await fetchService.get("/notes");
   return handleResponse(response);
 };
 
-export const getOneNote = async (
-  id: string
-): Promise<Note | { error: string }> => {
+export const getOneNote = async (id: string): Promise<Note> => {
   const response = await fetchService.get(`/notes/${id}`);
   return handleResponse(response);
 };
