@@ -1,10 +1,9 @@
 "use client";
 
-import NoteModal from "@/components/dashboard/modals/note-modal";
+import AddNoteModal from "@/components/dashboard/modals/add-note-modal";
 import Note from "@/components/dashboard/ui/note";
 import { Button } from "@/components/ui/button";
 import { useNotes } from "@/service/note/hooks";
-import React from "react";
 
 export default function Home() {
   const { data: notes, isLoading } = useNotes();
@@ -20,11 +19,11 @@ export default function Home() {
             "data" in notes &&
             notes.data.map((item) => <Note key={item.id} item={item} />)}
         </div>
-        <NoteModal>
+        <AddNoteModal>
           <Button className="rounded-full bg-purple-600 hover:bg-purple-300 size-11 text-2xl absolute bottom-10 right-10">
             +
           </Button>
-        </NoteModal>
+        </AddNoteModal>
       </div>
     </>
   );

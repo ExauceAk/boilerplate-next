@@ -66,7 +66,7 @@ export const updateNote = async (
   args: Partial<Note>,
   headers: HeadersInit = { "Content-Type": "application/json" }
 ) => {
-  const response = await fetchService.put(
+  const response = await fetchService.patch(
     `/notes/${id}`,
     JSON.stringify({
       name: args.name,
