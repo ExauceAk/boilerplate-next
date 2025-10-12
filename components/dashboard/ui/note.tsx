@@ -4,6 +4,7 @@ import { Note } from "@/service/note/types";
 import { FilePenLine, Trash2 } from "lucide-react";
 import React from "react";
 import DeleteNoteModal from "../modals/delete-note-modal";
+import EditNoteModal from "../modals/edit-note-modal";
 type Props = {
   item: Note;
 };
@@ -25,9 +26,11 @@ export default function Notes({ item }: Props) {
             <Trash2 size={10} />
           </Button>
         </DeleteNoteModal>
-        <Button className="size-6">
-          <FilePenLine size={10} />
-        </Button>
+        <EditNoteModal note={item}>
+          <Button className="size-6">
+            <FilePenLine size={10} />
+          </Button>
+        </EditNoteModal>
       </div>
     </div>
   );

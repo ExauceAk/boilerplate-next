@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { useDeleteNotes } from "@/service/note/hooks";
 import { DialogClose } from "@radix-ui/react-dialog";
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { toast } from "sonner";
 
 type Props = {
@@ -18,6 +18,7 @@ type Props = {
 
 export default function DeleteNoteModal({ children, id }: Props) {
   const { mutateAsync: deleteNote, isPending } = useDeleteNotes(id);
+  const cancelButtonRef = useRef<HTMLButtonElement>(null);
 
   const onSubmit = useCallback(async () => {
     await deleteNote(
@@ -30,6 +31,7 @@ export default function DeleteNoteModal({ children, id }: Props) {
           toast("Delete note", {
             description: "Note deleted successfully!",
           });
+          cancelButtonRef.current?.focus();
         },
         onError: (error) => {
           toast("Add note", {
@@ -46,7 +48,7 @@ export default function DeleteNoteModal({ children, id }: Props) {
         <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent className="flex flex-col w-[400px]">
           <DialogHeader>
-            <DialogTitle>Add Note</DialogTitle>
+            <DialogTitle>Delete Note</DialogTitle>
           </DialogHeader>
           <p>Are you sure you want to delete this note?</p>
           <div className="flex mx-auto">
@@ -59,6 +61,7 @@ export default function DeleteNoteModal({ children, id }: Props) {
             </Button>
             <DialogClose asChild>
               <Button
+                ref={cancelButtonRef}
                 disabled={isPending}
                 className="ml-5 bg-gray-600 hover:bg-gray-300"
               >
