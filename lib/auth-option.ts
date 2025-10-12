@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions: NextAuthOptions = {
   // ** Pages
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
   },
 
   // ** Session Strategy
@@ -48,9 +48,12 @@ export const authOptions: NextAuthOptions = {
           })
           .then(({ data }) => data)
           .catch((error) => {
-            if (error.response.data.statusCode === 401) throw new Error(error.response.data.message);
-            if (error.response.data.statusCode === 400) throw new Error(error.response.data.message);
-            if (error.response.status === 500) throw new Error("Server Error !");
+            if (error.response.data.statusCode === 401)
+              throw new Error(error.response.data.message);
+            if (error.response.data.statusCode === 400)
+              throw new Error(error.response.data.message);
+            if (error.response.status === 500)
+              throw new Error("Server Error !");
           });
         return response || null;
       },

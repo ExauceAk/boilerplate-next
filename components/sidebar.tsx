@@ -57,7 +57,7 @@ export function Sidebar() {
     >
       <div className="p-4 flex items-center gap-2">
         <div className=" text-white p-1 mt-2 rounded">
-          <Image src="/images/tasker.svg" alt="Logo" width={50} height={50} />
+          <Image src="/images/logo.png" alt="logo" width={40} height={40} />
         </div>
       </div>
 
