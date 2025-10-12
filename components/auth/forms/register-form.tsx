@@ -11,18 +11,51 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useRegisterForm from "@/hooks/auth/use-register-form";
+import useRegisterForm, {
+  CreateUserFormValues,
+} from "@/hooks/auth/use-register-form";
 import { cn } from "@/lib/utils";
+import { useRegisterUserMutation } from "@/service/auth/hooks";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { toast } from "sonner";
 
 export default function RegisterForm() {
   const router = useRouter();
 
   const form = useRegisterForm();
 
-  const onSubmit = async (data: any) => {};
+  const { mutateAsync: registerUserMutateAsync } = useRegisterUserMutation();
+
+  const onSubmit = useCallback(
+    async (values: CreateUserFormValues) => {
+      await registerUserMutateAsync(
+        {
+          email: values.email,
+          username: values.username,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+        },
+
+        {
+          onSuccess: () => {
+            toast("Register", {
+              description: "User registered successfully!",
+            });
+            router.push("/login");
+          },
+          onError: () => {
+            toast("Register", {
+              description: "Registration failed!",
+            });
+          },
+        }
+      );
+    },
+    [registerUserMutateAsync, router]
+  );
 
   return (
     <Form {...form}>

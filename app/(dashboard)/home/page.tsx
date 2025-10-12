@@ -15,9 +15,9 @@ export default function Home() {
         <p className="text-5xl font-bold">My Notes</p>
         <p>Order and manage your ideas and tasks</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 h-full overflow-auto hide-scrollbar ">
-          {notes &&
-            "data" in notes &&
-            notes.data.map((item) => <Note key={item.id} item={item} />)}
+          {notes?.data.map((item) => (
+            <Note key={item.id} item={item} />
+          ))}
         </div>
         <AddNoteModal>
           <Button className="rounded-full bg-purple-600 hover:bg-purple-300 size-11 text-2xl absolute bottom-10 right-10">

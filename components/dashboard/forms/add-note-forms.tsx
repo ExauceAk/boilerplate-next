@@ -49,6 +49,7 @@ export default function AddNoteForm() {
     },
     [createNoteMutateAsync]
   );
+
   return (
     <Form {...form}>
       <form className={cn("space-y-6")} onSubmit={form.handleSubmit(onSubmit)}>

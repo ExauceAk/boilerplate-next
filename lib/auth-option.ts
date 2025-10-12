@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions: NextAuthOptions = {
   // ** Pages
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
   },
 
   // ** Session Strategy
@@ -43,14 +43,17 @@ export const authOptions: NextAuthOptions = {
 
         const response = await axios
           .post(`${process.env.API_URL}/auth/login`, {
-            email,
+            identity: email,
             password,
           })
           .then(({ data }) => data)
           .catch((error) => {
-            if (error.response.data.statusCode === 401) throw new Error(error.response.data.message);
-            if (error.response.data.statusCode === 400) throw new Error(error.response.data.message);
-            if (error.response.status === 500) throw new Error("Server Error !");
+            if (error.response.data.statusCode === 401)
+              throw new Error(error.response.data.message);
+            if (error.response.data.statusCode === 400)
+              throw new Error(error.response.data.message);
+            if (error.response.status === 500)
+              throw new Error("Server Error !");
           });
         return response || null;
       },
@@ -63,7 +66,6 @@ export const authOptions: NextAuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      session.role = token.data.userInfo.role.name;
       session.accessToken = await token.data.token;
       // console.log("Next auth session", session);
       return session;
