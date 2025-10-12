@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 
         const response = await axios
           .post(`${process.env.API_URL}/auth/login`, {
-            email,
+            identity: email,
             password,
           })
           .then(({ data }) => data)

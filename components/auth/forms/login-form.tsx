@@ -2,7 +2,14 @@
 
 import PasswordInput from "@/components/password-input";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,9 +38,13 @@ const loginSchema = z.object({
     .max(50, {
       message: "Password must be at most 50 characters long",
     })
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[?" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])(?=.{8,})/, {
-      message: "Password must contain at least one uppercase, one lowercase, one number and one special character",
-    }),
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[?" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])(?=.{8,})/,
+      {
+        message:
+          "Password must contain at least one uppercase, one lowercase, one number and one special character",
+      }
+    ),
 });
 
 type Credentials = z.infer<typeof loginSchema>;
@@ -58,18 +69,15 @@ export default function LoginForm({ id, className }: Props) {
     });
     // console.log("response of log ==>", response);
     if (response?.status !== 201) {
-      toast('Login', {
+      toast("Login", {
         description: response?.error,
-      })
+      });
     }
     if (response?.ok) {
-      router.push('/dashboard');
-      toast(
-        'Login',
-        {
-          description: 'Connected successfully!',
-        }
-      );
+      router.push("/");
+      toast("Login", {
+        description: "Connected successfully!",
+      });
     }
   };
 
@@ -87,11 +95,7 @@ export default function LoginForm({ id, className }: Props) {
             <FormItem>
               <FormLabel className=" text-[#1D3055]">Email</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="example@gmail.com"
-                  type="text"
-                  {...field}
-                />
+                <Input placeholder="example@gmail.com" type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,10 +109,7 @@ export default function LoginForm({ id, className }: Props) {
             <FormItem>
               <FormLabel className="text-[#1D3055]">Password</FormLabel>
               <FormControl>
-                <PasswordInput
-                  placeholder="*****"
-                  {...field}
-                />
+                <PasswordInput placeholder="*****" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -116,11 +117,7 @@ export default function LoginForm({ id, className }: Props) {
         />
 
         <div className=" flex items-center justify-between">
-
-          <Link
-            className="block text-[#0E49BE]"
-            href='/forgot-password'
-          >
+          <Link className="block text-[#0E49BE]" href="/forgot-password">
             Password forgotten?
           </Link>
         </div>
@@ -131,10 +128,7 @@ export default function LoginForm({ id, className }: Props) {
           disabled={form.formState.isSubmitting || !form.formState.isValid}
         >
           {form.formState.isSubmitting && (
-            <Loader2
-              className="mr-2 h-4 w-4 animate-spin"
-              aria-hidden="true"
-            />
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
           )}
           Login
         </Button>
