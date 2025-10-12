@@ -13,7 +13,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function NoteModal({ children }: Props) {
+export default function AddNoteModal({ children }: Props) {
   return (
     <>
       <Dialog>
