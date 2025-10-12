@@ -9,14 +9,11 @@ const resetPasswordSchema = z
   .object({
     newPassword: z
       .string()
-      .min(12, {
-        message: "Password must be at least 12 characters long",
+      .min(6, {
+        message: "Password must be at least 6 characters long",
       })
       .max(50, {
         message: "Password must be at most 50 characters long",
-      })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])(?=.{8,})/, {
-        message: "Password must contain at least one uppercase, one lowercase, one number and one special character",
       }),
     confirmPassword: z.string().min(8, {
       message: "Password must be at least 12 characters long.",

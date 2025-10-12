@@ -3,7 +3,7 @@
 import { fetchData } from "@/lib/utils";
 import { FetchService } from "../config/fetch";
 import { DATA_BODY_KEY } from "./enum";
-import { Note } from "./types";
+import { User } from "./types";
 import { getToken } from "../config/user-token";
 
 const fetchService: FetchService = new FetchService({
@@ -27,52 +27,50 @@ async function handleResponse(
   return { error: error };
 }
 
-export const getAllNotes = async (): Promise<{
-  data: Note[];
-  page: number;
-  total: number;
-}> => {
-  const response = await fetchService.get("/notes");
-  return handleResponse(response);
-};
-
-export const getOneNote = async (id: string): Promise<Note> => {
-  const response = await fetchService.get(`/notes/${id}`);
-  return handleResponse(response);
-};
-
-export const createNote = async (
-  args: Partial<Note>,
+export const registerUser = async (
+  args: Partial<User>,
   headers: HeadersInit = { "Content-Type": "application/json" }
 ) => {
   const response = await fetchService.post(
-    "/notes",
+    "/auth/register",
     JSON.stringify({
-      name: args.name,
-      content: args.content,
+      email: args.email,
+      username: args.username,
+      password: args.password,
+      confirmPassword: args.confirmPassword,
     }),
     { headers }
   );
   return handleResponse(response);
 };
 
-export const updateNote = async (
-  id: string,
-  args: Partial<Note>,
+export const forgotPassword = async (
+  args: Partial<User>,
   headers: HeadersInit = { "Content-Type": "application/json" }
 ) => {
-  const response = await fetchService.patch(
-    `/notes/${id}`,
+  const response = await fetchService.post(
+    "/auth/forgot-password",
     JSON.stringify({
-      name: args.name,
-      content: args.content,
+      email: args.email,
     }),
     { headers }
   );
   return handleResponse(response);
 };
 
-export const deleteNote = async (id: string) => {
-  const response = await fetchService.delete(`/notes/${id}`);
+export const resetPassword = async (
+  args: Partial<User>,
+  token: string,
+  headers: HeadersInit = { "Content-Type": "application/json" }
+) => {
+  const response = await fetchService.post(
+    "/auth/reset-password",
+    JSON.stringify({
+      token,
+      password: args.password,
+      confirmPassword: args.confirmPassword,
+    }),
+    { headers }
+  );
   return handleResponse(response);
 };

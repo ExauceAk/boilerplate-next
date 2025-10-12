@@ -11,18 +11,50 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useResetPasswordForm from "@/hooks/auth/use-reset-password-form";
+import useResetPasswordForm, {
+  ResetPasswordInformation,
+} from "@/hooks/auth/use-reset-password-form";
 import { cn } from "@/lib/utils";
+import { useResetPasswordMutation } from "@/service/auth/hooks";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { toast } from "sonner";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({ id }: { id: string }) {
   const router = useRouter();
 
   const form = useResetPasswordForm();
 
-  const onSubmit = async (data: any) => {};
+  const { mutateAsync: resetPasswordMutateAsync } =
+    useResetPasswordMutation(id);
+
+  const onSubmit = useCallback(
+    async (data: ResetPasswordInformation) => {
+      await resetPasswordMutateAsync(
+        {
+          password: data.newPassword,
+          confirmPassword: data.confirmPassword,
+        },
+
+        {
+          onSuccess: () => {
+            toast("Reset password", {
+              description: "Password reset successfully!",
+            });
+            router.push("/login");
+          },
+          onError: () => {
+            toast("Reset password", {
+              description: "Password reset failed!",
+            });
+          },
+        }
+      );
+    },
+    [resetPasswordMutateAsync, router]
+  );
 
   return (
     <Form {...form}>

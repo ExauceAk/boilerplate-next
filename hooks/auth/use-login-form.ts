@@ -8,8 +8,8 @@ const schema = z.object({
   credential: z.string().min(2, {
     message: "Must be at least 2 characters long.",
   }),
-  password: z.string().min(2, {
-    message: "Password must be at least 2 characters.",
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters.",
   }),
 });
 

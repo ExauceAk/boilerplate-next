@@ -10,18 +10,49 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useForgotPasswordForm from "@/hooks/auth/use-forgot-password-form";
+import useForgotPasswordForm, {
+  ForgetPasswordFormValue,
+} from "@/hooks/auth/use-forgot-password-form";
 import { cn } from "@/lib/utils";
+import { useForgotPasswordMutation } from "@/service/auth/hooks";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { toast } from "sonner";
 
 export default function ForgotPasswordForm() {
   const router = useRouter();
 
   const form = useForgotPasswordForm();
 
-  const onSubmit = async (data: any) => {};
+  const { mutateAsync: forgotPasswordMutateAsync } =
+    useForgotPasswordMutation();
+
+  const onSubmit = useCallback(
+    async (data: ForgetPasswordFormValue) => {
+      await forgotPasswordMutateAsync(
+        {
+          email: data.email,
+        },
+
+        {
+          onSuccess: () => {
+            toast("Forgot password", {
+              description: "Password reset link sent to your email!",
+            });
+            router.push("/");
+          },
+          onError: () => {
+            toast("Forgot password", {
+              description: "Password reset failed!",
+            });
+          },
+        }
+      );
+    },
+    [forgotPasswordMutateAsync, router]
+  );
 
   return (
     <Form {...form}>
