@@ -66,7 +66,6 @@ export const authOptions: NextAuthOptions = {
       return { ...token, ...user };
     },
     async session({ session, token }) {
-      session.role = token.data.userInfo.role.name;
       session.accessToken = await token.data.token;
       // console.log("Next auth session", session);
       return session;

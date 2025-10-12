@@ -15,8 +15,8 @@ const resetPasswordSchema = z
       .max(50, {
         message: "Password must be at most 50 characters long",
       }),
-    confirmPassword: z.string().min(8, {
-      message: "Password must be at least 12 characters long.",
+    confirmPassword: z.string().min(6, {
+      message: "Password must be at least 6 characters long.",
     }),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
